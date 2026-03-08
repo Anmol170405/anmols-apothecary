@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Anmol's Apothecary – Register</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --olive: #6B7C3E;
+    --olive-dark: #4f5c2e;
+    --olive-light: #8fa05a;
+    --olive-pale: #e8edda;
+    --olive-muted: #c5d09a;
+    --cream: #faf8f2;
+    --cream2: #f3f0e6;
+    --brown: #3a2e1e;
+    --brown-light: #6b5740;
+    --gold: #c8a84b;
+    --red: #c0392b;
+    --green: #2e7d32;
+    --text: #2a2318;
+    --muted: #7a7060;
+    --border: #d8d0be;
+    --shadow: 0 4px 24px rgba(107,124,62,0.10);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    min-height: 100vh;
+    color: var(--text);
+    background-image:
+      radial-gradient(ellipse at 80% 0%, rgba(107,124,62,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 0% 100%, rgba(200,168,75,0.06) 0%, transparent 50%);
+  }
+  /* HEADER */
+  .site-header {
+    background: var(--olive-dark);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+    position: sticky; top: 0; z-index: 100;
+  }
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .brand-icon {
+    width: 38px; height: 38px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+  }
+  .brand-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.5px;
+  }
+  .brand-sub { font-size: 0.7rem; color: var(--olive-muted); letter-spacing: 2px; text-transform: uppercase; }
+  .header-nav { display: flex; gap: 1rem; align-items: center; }
+  .nav-link {
+    color: var(--olive-muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    padding: 6px 16px;
+    border-radius: 20px;
+    transition: all 0.2s;
+    font-weight: 500;
+  }
+  .nav-link:hover, .nav-link.active {
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+  }
+  /* PAGE */
+  .page-wrap {
+    max-width: 860px;
+    margin: 2rem auto;
+    padding: 0 1rem 3rem;
+  }
+  .page-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--olive-dark);
+    margin-bottom: 0.25rem;
+    text-align: center;
+  }
+  .page-sub {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.88rem;
+    margin-bottom: 2rem;
+  }
+  /* CARD */
+  .card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .card-section {
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid var(--olive-pale);
+  }
+  .card-section:last-child { border-bottom: none; }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--olive-dark);
+    margin-bottom: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-title::before {
+    content: '';
+    display: inline-block;
+    width: 4px; height: 18px;
+    background: var(--olive);
+    border-radius: 2px;
+  }
+  /* GRID */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
+  .span-2 { grid-column: span 2; }
+  /* FIELD */
+  .field { display: flex; flex-direction: column; gap: 4px; }
+  .field label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--brown-light);
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+  }
+  .field label .req { color: var(--red); margin-left: 2px; }
+  .field input, .field select {
+    height: 42px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    padding: 0 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    color: var(--text);
+    background: var(--cream);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+    width: 100%;
+  }
+  .field input:focus, .field select:focus {
+    border-color: var(--olive);
+    box-shadow: 0 0 0 3px rgba(107,124,62,0.12);
+    background: #fff;
+  }
+  .field input.valid { border-color: var(--green); }
+  .field input.invalid { border-color: var(--red); }
+  .field-hint {
+    font-size: 0.74rem;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+  .field-hint.error { color: var(--red); }
+  .field-hint.success { color: var(--green); }
+  /* PHONE FIELD */
+  .phone-wrap { display: flex; gap: 0; }
+  .phone-wrap select {
+    width: 110px;
+    border-radius: 8px 0 0 8px;
+    border-right: none;
+    flex-shrink: 0;
+    background: var(--olive-pale);
+    font-size: 0.82rem;
+  }
+  .phone-wrap input {
+    border-radius: 0 8px 8px 0;
+    flex: 1;
+  }
+  /* PASSWORD WRAPPER */
+  .pw-wrap { position: relative; }
+  .pw-wrap input { padding-right: 42px; }
+  .pw-toggle {
+    position: absolute;
+    right: 10px; top: 50%;
+    transform: translateY(-50%);
+    background: none; border: none;
+    cursor: pointer;
+    color: var(--muted);
+    font-size: 1rem;
+    padding: 4px;
+    line-height: 1;
+    transition: color 0.2s;
+  }
+  .pw-toggle:hover { color: var(--olive); }
+  /* PASSWORD RULES */
+  .pw-rules {
+    display: none;
+    background: var(--olive-pale);
+    border: 1px solid var(--olive-muted);
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-top: 6px;
+    gap: 4px;
+    flex-direction: column;
+  }
+  .pw-rules.show { display: flex; }
+  .pw-rule {
+    font-size: 0.78rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--red);
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .pw-rule.ok { color: var(--green); }
+  .pw-rule::before { content: '✗'; font-size: 0.8rem; transition: all 0.2s; }
+  .pw-rule.ok::before { content: '✓'; }
+  /* CONFIRM PW STATUS */
+  .confirm-status {
+    font-size: 0.78rem;
+    margin-top: 3px;
+    font-weight: 500;
+    min-height: 16px;
+  }
+  .confirm-status.match { color: var(--green); }
+  .confirm-status.no-match { color: var(--red); }
+  /* SUBMIT */
+  .submit-area {
+    padding: 1.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    background: var(--cream2);
+  }
+  .btn-primary {
+    background: var(--olive-dark);
+    color: #fff;
+    border: none;
+    padding: 13px 48px;
+    border-radius: 30px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+    box-shadow: 0 4px 16px rgba(79,92,46,0.25);
+  }
+  .btn-primary:hover { background: var(--olive); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(79,92,46,0.35); }
+  .btn-primary:active { transform: translateY(0); }
+  .login-prompt { font-size: 0.85rem; color: var(--muted); }
+  .login-prompt a { color: var(--olive-dark); font-weight: 600; text-decoration: none; }
+  .login-prompt a:hover { text-decoration: underline; }
+  /* SUCCESS POPUP */
+  .popup-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(3px);
+  }
+  .popup-overlay.show { display: flex; }
+  .popup-box {
+    background: #fff;
+    border-radius: 20px;
+    padding: 2.5rem 3rem;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    max-width: 380px;
+    animation: popIn 0.35s cubic-bezier(0.34,1.56,0.64,1);
+    border: 3px solid var(--green);
+    position: relative;
+  }
+  @keyframes popIn {
+    from { transform: scale(0.7); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+  .popup-icon { font-size: 3rem; margin-bottom: 0.75rem; }
+  .popup-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--green);
+    margin-bottom: 0.4rem;
+  }
+  .popup-msg { font-size: 0.9rem; color: var(--muted); line-height: 1.5; }
+  .popup-countdown {
+    margin-top: 12px;
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+  .popup-bar {
+    position: absolute;
+    bottom: 0; left: 0;
+    height: 4px;
+    background: var(--green);
+    border-radius: 0 0 0 17px;
+    animation: shrink 3s linear forwards;
+  }
+  @keyframes shrink { from { width: 100%; } to { width: 0%; } }
+
+  /* SAVE CREDENTIALS OVERLAY */
+  .cred-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+  }
+  .cred-overlay.show { display: flex; }
+  .cred-box {
+    background: #fff;
+    border-radius: 18px;
+    padding: 2rem 2.5rem;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    max-width: 400px;
+    width: 90%;
+    animation: popIn 0.35s cubic-bezier(0.34,1.56,0.64,1);
+    border: 2px solid var(--olive);
+  }
+  .cred-box .key-icon { font-size: 2.5rem; margin-bottom: 0.6rem; }
+  .cred-box h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--olive-dark);
+    margin-bottom: 0.4rem;
+  }
+  .cred-box p { font-size: 0.85rem; color: var(--muted); margin-bottom: 1.2rem; line-height: 1.5; }
+  .cred-email-display {
+    background: var(--olive-pale);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 0.88rem;
+    color: var(--olive-dark);
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    word-break: break-all;
+  }
+  .cred-buttons { display: flex; gap: 10px; justify-content: center; }
+  .btn-save-yes {
+    background: var(--olive-dark);
+    color: #fff;
+    border: none;
+    padding: 10px 28px;
+    border-radius: 24px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .btn-save-yes:hover { background: var(--olive); }
+  .btn-save-no {
+    background: transparent;
+    color: var(--muted);
+    border: 1.5px solid var(--border);
+    padding: 10px 24px;
+    border-radius: 24px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-save-no:hover { border-color: var(--muted); color: var(--text); }
+
+  /* RESPONSIVE */
+  @media (max-width: 640px) {
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    .span-2 { grid-column: span 1; }
+    .card-section { padding: 1.2rem 1rem; }
+    .submit-area { padding: 1.2rem 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="brand">
+    <div class="brand-icon">🌿</div>
+    <div>
+      <div class="brand-name">Anmol's Apothecary</div>
+      <div class="brand-sub">Wellness &amp; Natural Care</div>
+    </div>
+  </div>
+  <nav class="header-nav">
+    <a href="login.html" class="nav-link">Login</a>
+    <a href="register.html" class="nav-link active">Register</a>
+  </nav>
+</header>
+
+<div class="page-wrap">
+  <h1 class="page-title">Create Your Account</h1>
+  <p class="page-sub">Join Anmol's Apothecary — India's trusted wellness destination</p>
+
+  <div class="card">
+
+    <!-- PERSONAL INFO -->
+    <div class="card-section">
+      <div class="section-title">Personal Information</div>
+      <div class="grid-3">
+        <div class="field">
+          <label>First Name <span class="req">*</span></label>
+          <input type="text" id="firstName" placeholder="Anmol" autocomplete="given-name"/>
+          <span class="field-hint error" id="firstNameErr"></span>
+        </div>
+        <div class="field">
+          <label>Middle Name</label>
+          <input type="text" id="middleName" placeholder="Optional" autocomplete="additional-name"/>
+        </div>
+        <div class="field">
+          <label>Last Name <span class="req">*</span></label>
+          <input type="text" id="lastName" placeholder="Sharma" autocomplete="family-name"/>
+          <span class="field-hint error" id="lastNameErr"></span>
+        </div>
+        <div class="field">
+          <label>Father's Name <span class="req">*</span></label>
+          <input type="text" id="fatherName" placeholder="Father's full name"/>
+          <span class="field-hint error" id="fatherNameErr"></span>
+        </div>
+        <div class="field">
+          <label>Date of Birth <span class="req">*</span></label>
+          <input type="date" id="dob" max="" autocomplete="bday"/>
+          <span class="field-hint error" id="dobErr"></span>
+        </div>
+        <div class="field">
+          <label>Age (Auto-calculated)</label>
+          <input type="text" id="age" placeholder="—" readonly style="background:#f0ede4;cursor:default;color:var(--olive-dark);font-weight:600;"/>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="card-section">
+      <div class="section-title">Contact Details</div>
+      <div class="grid-2">
+        <div class="field">
+          <label>Mobile Number <span class="req">*</span></label>
+          <div class="phone-wrap">
+            <select id="countryCode" autocomplete="tel-country-code">
+              <option value="+91">🇮🇳 +91</option>
+              <option value="+1">🇺🇸 +1</option>
+              <option value="+44">🇬🇧 +44</option>
+              <option value="+61">🇦🇺 +61</option>
+              <option value="+971">🇦🇪 +971</option>
+              <option value="+65">🇸🇬 +65</option>
+              <option value="+60">🇲🇾 +60</option>
+            </select>
+            <input type="tel" id="phone" placeholder="9876543210" maxlength="10" autocomplete="tel-national"/>
+          </div>
+          <span class="field-hint error" id="phoneErr"></span>
+        </div>
+        <div class="field">
+          <label>Email Address <span class="req">*</span></label>
+          <input type="email" id="email" placeholder="you@example.com" autocomplete="email"/>
+          <span class="field-hint error" id="emailErr"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ADDRESS -->
+    <div class="card-section">
+      <div class="section-title">Address</div>
+      <div class="grid-2">
+        <div class="field span-2">
+          <label>Address / Lane <span class="req">*</span></label>
+          <input type="text" id="address" placeholder="House No., Street, Area" autocomplete="address-line1"/>
+          <span class="field-hint error" id="addressErr"></span>
+        </div>
+        <div class="field">
+          <label>State / UT <span class="req">*</span></label>
+          <select id="stateSelect" autocomplete="address-level1">
+            <option value="">— Select State —</option>
+          </select>
+          <span class="field-hint error" id="stateErr"></span>
+        </div>
+        <div class="field">
+          <label>City <span class="req">*</span></label>
+          <select id="citySelect" autocomplete="address-level2" disabled>
+            <option value="">— Select State First —</option>
+          </select>
+          <span class="field-hint error" id="cityErr"></span>
+        </div>
+        <div class="field">
+          <label>Pincode <span class="req">*</span></label>
+          <input type="text" id="pincode" placeholder="110001" maxlength="6" autocomplete="postal-code"/>
+          <span class="field-hint error" id="pincodeErr"></span>
+        </div>
+        <div class="field">
+          <label>Country</label>
+          <input type="text" value="India 🇮🇳" readonly style="background:#f0ede4;cursor:default;color:var(--olive-dark);font-weight:600;"/>
+        </div>
+      </div>
+    </div>
+
+    <!-- PASSWORD -->
+    <div class="card-section">
+      <div class="section-title">Secure Password</div>
+      <div class="grid-2">
+        <div class="field">
+          <label>Password <span class="req">*</span></label>
+          <div class="pw-wrap">
+            <input type="password" id="password" placeholder="Create password" autocomplete="new-password"/>
+            <button type="button" class="pw-toggle" onclick="togglePw('password','eyeIcon1')" id="eyeIcon1" title="Show/Hide">👁</button>
+          </div>
+          <div class="pw-rules" id="pwRules">
+            <div class="pw-rule" id="rule-len">Minimum 8 characters</div>
+            <div class="pw-rule" id="rule-upper">At least 1 uppercase letter</div>
+            <div class="pw-rule" id="rule-num">At least 1 number</div>
+            <div class="pw-rule" id="rule-special">At least 1 special character (!@#$%^&*)</div>
+          </div>
+          <span class="field-hint error" id="passwordErr"></span>
+        </div>
+        <div class="field">
+          <label>Confirm Password <span class="req">*</span></label>
+          <div class="pw-wrap">
+            <input type="password" id="confirmPassword" placeholder="Repeat password" autocomplete="new-password"/>
+            <button type="button" class="pw-toggle" onclick="togglePw('confirmPassword','eyeIcon2')" id="eyeIcon2" title="Show/Hide">👁</button>
+          </div>
+          <div class="confirm-status" id="confirmStatus"></div>
+          <span class="field-hint error" id="confirmPasswordErr"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUBMIT -->
+    <div class="submit-area">
+      <button class="btn-primary" onclick="submitForm()">🌿 Create Account</button>
+      <p class="login-prompt">Already have an account? <a href="login.html">Sign In</a></p>
+    </div>
+
+  </div>
+</div>
+
+<!-- SUCCESS POPUP -->
+<div class="popup-overlay" id="successPopup">
+  <div class="popup-box">
+    <div class="popup-icon">✅</div>
+    <div class="popup-title">Account Created!</div>
+    <p class="popup-msg">Welcome to Anmol's Apothecary.<br/>Your account has been created successfully.</p>
+    <div class="popup-countdown" id="popupCountdown">Redirecting to login in 3s...</div>
+    <div class="popup-bar"></div>
+  </div>
+</div>
+
+<!-- SAVE CREDENTIALS POPUP -->
+<div class="cred-overlay" id="credOverlay">
+  <div class="cred-box">
+    <div class="key-icon">🔑</div>
+    <h3>Save Your Login?</h3>
+    <p>Would you like to save your credentials so you can sign in quickly next time — just like Google Password Manager?</p>
+    <div class="cred-email-display" id="savedEmailDisplay"></div>
+    <div class="cred-buttons">
+      <button class="btn-save-yes" onclick="saveCredentials()">✅ Yes, Save It</button>
+      <button class="btn-save-no" onclick="skipSave()">Not Now</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ─── DATA ─── */
+const STATES_CITIES = {
+  "Andhra Pradesh": ["Visakhapatnam","Vijayawada","Guntur","Tirupati","Nellore","Kurnool"],
+  "Arunachal Pradesh": ["Itanagar","Tawang","Pasighat","Ziro","Bomdila"],
+  "Assam": ["Guwahati","Dibrugarh","Silchar","Jorhat","Tezpur","Tinsukia"],
+  "Bihar": ["Patna","Gaya","Bhagalpur","Muzaffarpur","Darbhanga","Purnia"],
+  "Chhattisgarh": ["Raipur","Bhilai","Durg","Bilaspur","Korba"],
+  "Goa": ["Panaji","Margao","Vasco da Gama","Mapusa","Ponda"],
+  "Gujarat": ["Ahmedabad","Surat","Vadodara","Rajkot","Bhavnagar","Jamnagar"],
+  "Haryana": ["Gurgaon","Faridabad","Panipat","Ambala","Rohtak","Hisar"],
+  "Himachal Pradesh": ["Shimla","Manali","Dharamshala","Solan","Mandi"],
+  "Jharkhand": ["Ranchi","Jamshedpur","Dhanbad","Bokaro","Hazaribagh"],
+  "Karnataka": ["Bengaluru","Mysuru","Mangaluru","Hubballi","Belagavi","Ballari"],
+  "Kerala": ["Thiruvananthapuram","Kochi","Kozhikode","Thrissur","Kollam"],
+  "Madhya Pradesh": ["Bhopal","Indore","Gwalior","Jabalpur","Ujjain"],
+  "Maharashtra": ["Mumbai","Pune","Nagpur","Nashik","Aurangabad","Kolhapur"],
+  "Manipur": ["Imphal","Thoubal","Bishnupur","Churachandpur","Ukhrul"],
+  "Meghalaya": ["Shillong","Tura","Nongpoh","Jowai","Baghmara"],
+  "Mizoram": ["Aizawl","Lunglei","Champhai","Kolasib","Serchhip"],
+  "Nagaland": ["Kohima","Dimapur","Mokokchung","Tuensang","Wokha"],
+  "Odisha": ["Bhubaneswar","Cuttack","Rourkela","Puri","Sambalpur"],
+  "Punjab": ["Ludhiana","Amritsar","Jalandhar","Patiala","Bathinda","Mohali"],
+  "Rajasthan": ["Jaipur","Jodhpur","Udaipur","Kota","Ajmer"],
+  "Sikkim": ["Gangtok","Namchi","Mangan","Gyalshing","Rangpo"],
+  "Tamil Nadu": ["Chennai","Coimbatore","Madurai","Salem","Tiruchirappalli"],
+  "Telangana": ["Hyderabad","Warangal","Karimnagar","Nizamabad","Khammam"],
+  "Tripura": ["Agartala","Udaipur","Dharmanagar","Kailasahar","Belonia"],
+  "Uttar Pradesh": ["Lucknow","Kanpur","Agra","Varanasi","Prayagraj","Meerut"],
+  "Uttarakhand": ["Dehradun","Haridwar","Rishikesh","Haldwani","Nainital"],
+  "West Bengal": ["Kolkata","Howrah","Durgapur","Asansol","Siliguri"],
+  "Andaman & Nicobar Islands": ["Port Blair","Diglipur","Mayabunder","Rangat","Car Nicobar"],
+  "Chandigarh": ["Chandigarh","Manimajra","Burail","Dhanas","Mauli Jagran"],
+  "Dadra & Nagar Haveli and Daman & Diu": ["Daman","Diu","Silvassa","Dadra","Naroli"],
+  "Delhi": ["New Delhi","Dwarka","Rohini","Saket","Karol Bagh","Janakpuri"],
+  "Jammu & Kashmir": ["Srinagar","Jammu","Anantnag","Baramulla","Kupwara","Kathua"],
+  "Ladakh": ["Leh","Kargil","Diskit","Zanskar","Nubra"],
+  "Lakshadweep": ["Kavaratti","Agatti","Amini","Minicoy","Andrott"],
+  "Puducherry": ["Puducherry","Karaikal","Mahe","Yanam","Oulgaret"]
+};
+
+/* ─── INIT STATE DROPDOWN ─── */
+const stateSelect = document.getElementById('stateSelect');
+const citySelect = document.getElementById('citySelect');
+Object.keys(STATES_CITIES).sort().forEach(s => {
+  const o = document.createElement('option');
+  o.value = s; o.textContent = s;
+  stateSelect.appendChild(o);
+});
+stateSelect.addEventListener('change', () => {
+  const cities = STATES_CITIES[stateSelect.value] || [];
+  citySelect.innerHTML = '<option value="">— Select City —</option>';
+  cities.forEach(c => {
+    const o = document.createElement('option');
+    o.value = c; o.textContent = c;
+    citySelect.appendChild(o);
+  });
+  citySelect.disabled = cities.length === 0;
+  document.getElementById('stateErr').textContent = '';
+});
+
+/* ─── DOB → AGE ─── */
+const dobInput = document.getElementById('dob');
+const today = new Date();
+dobInput.max = today.toISOString().split('T')[0];
+dobInput.addEventListener('change', () => {
+  const dob = new Date(dobInput.value);
+  if (isNaN(dob)) return;
+  let age = today.getFullYear() - dob.getFullYear();
+  const m = today.getMonth() - dob.getMonth();
+  if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) age--;
+  document.getElementById('age').value = age >= 0 ? age + ' years' : '';
+});
+
+/* ─── PASSWORD RULES ─── */
+const pwInput = document.getElementById('password');
+const pwRules = document.getElementById('pwRules');
+pwInput.addEventListener('focus', () => pwRules.classList.add('show'));
+pwInput.addEventListener('blur', () => { if (!pwInput.value) pwRules.classList.remove('show'); });
+pwInput.addEventListener('input', () => {
+  const v = pwInput.value;
+  setRule('rule-len', v.length >= 8);
+  setRule('rule-upper', /[A-Z]/.test(v));
+  setRule('rule-num', /[0-9]/.test(v));
+  setRule('rule-special', /[!@#$%^&*]/.test(v));
+  checkConfirm();
+});
+function setRule(id, ok) {
+  document.getElementById(id).classList.toggle('ok', ok);
+}
+function pwValid(v) {
+  return v.length >= 8 && /[A-Z]/.test(v) && /[0-9]/.test(v) && /[!@#$%^&*]/.test(v);
+}
+
+/* ─── CONFIRM PASSWORD ─── */
+const cfInput = document.getElementById('confirmPassword');
+cfInput.addEventListener('input', checkConfirm);
+function checkConfirm() {
+  const cs = document.getElementById('confirmStatus');
+  if (!cfInput.value) { cs.textContent = ''; return; }
+  if (pwInput.value === cfInput.value) {
+    cs.textContent = '✓ Passwords match'; cs.className = 'confirm-status match';
+  } else {
+    cs.textContent = '✗ Passwords do not match'; cs.className = 'confirm-status no-match';
+  }
+}
+
+/* ─── SHOW/HIDE PASSWORD ─── */
+function togglePw(fieldId, btnId) {
+  const f = document.getElementById(fieldId);
+  const b = document.getElementById(btnId);
+  if (f.type === 'password') { f.type = 'text'; b.textContent = '🙈'; }
+  else { f.type = 'password'; b.textContent = '👁'; }
+}
+
+/* ─── VALIDATION HELPERS ─── */
+function err(id, msg) { document.getElementById(id).textContent = msg; return !msg; }
+function clearErr(id) { document.getElementById(id).textContent = ''; }
+function emailValid(e) { return /^[^\s@]+@[^\s@]+\.com$/i.test(e); }
+function phoneValid(p) { return /^[6-9]\d{9}$/.test(p); }
+
+/* ─── FORM SUBMIT ─── */
+let pendingEmail = '', pendingPw = '';
+function submitForm() {
+  let ok = true;
+  const fn = document.getElementById('firstName').value.trim();
+  const ln = document.getElementById('lastName').value.trim();
+  const fthr = document.getElementById('fatherName').value.trim();
+  const dob = document.getElementById('dob').value;
+  const phone = document.getElementById('phone').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const addr = document.getElementById('address').value.trim();
+  const state = document.getElementById('stateSelect').value;
+  const city = document.getElementById('citySelect').value;
+  const pin = document.getElementById('pincode').value.trim();
+  const pw = document.getElementById('password').value;
+  const cpw = document.getElementById('confirmPassword').value;
+
+  if (!fn) { err('firstNameErr','First name is required'); ok = false; } else clearErr('firstNameErr');
+  if (!ln) { err('lastNameErr','Last name is required'); ok = false; } else clearErr('lastNameErr');
+  if (!fthr) { err('fatherNameErr',"Father's name is required"); ok = false; } else clearErr('fatherNameErr');
+  if (!dob) { err('dobErr','Date of birth is required'); ok = false; } else clearErr('dobErr');
+  if (!phoneValid(phone)) { err('phoneErr','Enter valid 10-digit Indian mobile number'); ok = false; } else clearErr('phoneErr');
+  if (!emailValid(email)) { err('emailErr','Email must be valid and end with .com'); ok = false; } else clearErr('emailErr');
+  if (!addr) { err('addressErr','Address is required'); ok = false; } else clearErr('addressErr');
+  if (!state) { err('stateErr','Please select a state'); ok = false; } else clearErr('stateErr');
+  if (!city) { err('cityErr','Please select a city'); ok = false; } else clearErr('cityErr');
+  if (!/^\d{6}$/.test(pin)) { err('pincodeErr','Enter valid 6-digit pincode'); ok = false; } else clearErr('pincodeErr');
+  if (!pwValid(pw)) { err('passwordErr','Password does not meet all requirements'); ok = false; } else clearErr('passwordErr');
+  if (pw !== cpw) { err('confirmPasswordErr','Passwords do not match'); ok = false; } else clearErr('confirmPasswordErr');
+
+  if (!ok) return;
+
+  pendingEmail = email;
+  pendingPw = pw;
+
+  // Show success popup
+  document.getElementById('successPopup').classList.add('show');
+  let count = 3;
+  const cd = document.getElementById('popupCountdown');
+  const timer = setInterval(() => {
+    count--;
+    cd.textContent = `Redirecting to login in ${count}s...`;
+    if (count <= 0) {
+      clearInterval(timer);
+      document.getElementById('successPopup').classList.remove('show');
+      // Show credential saving prompt
+      document.getElementById('savedEmailDisplay').textContent = email;
+      document.getElementById('credOverlay').classList.add('show');
+    }
+  }, 1000);
+}
+
+/* ─── SAVE CREDENTIALS ─── */
+function saveCredentials() {
+  localStorage.setItem('aa_saved_email', pendingEmail);
+  localStorage.setItem('aa_saved_pw', pendingPw);
+  localStorage.setItem('aa_reg_email', pendingEmail);
+  localStorage.setItem('aa_reg_pw', pendingPw);
+  localStorage.setItem('aa_credentials_saved', 'true');
+  document.getElementById('credOverlay').classList.remove('show');
+  window.location.href = 'login.html?prefill=1';
+}
+function skipSave() {
+  localStorage.setItem('aa_reg_email', pendingEmail);
+  localStorage.setItem('aa_reg_pw', pendingPw);
+  document.getElementById('credOverlay').classList.remove('show');
+  window.location.href = 'login.html';
+}
+</script>
+</body>
+</html>
