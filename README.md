@@ -4,7 +4,7 @@
 
 *Where wellness meets thoughtful engineering.*
 
-[![Live Demo](https://img.shields.io/badge/🌐%20Live%20Demo-anmols--apothecary.netlify.app-4f5c2e?style=for-the-badge)](https://anmols-apothecary.netlify.app)
+[![Live Demo](https://img.shields.io/badge/🌐%20Live%20on%20Netlify-Click%20Here-4f5c2e?style=for-the-badge)](https://anmols-apothecary.netlify.app/register.html)
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
@@ -22,12 +22,12 @@ No React. No Node. No fluff. Just HTML, CSS, and JavaScript doing exactly what t
 
 ---
 
-## Pages
+## 🌐 Live Site
 
-| Page | Path |
+| Page | Link |
 |---|---|
-| 🌿 Register | `/register.html` |
-| 🔓 Login | `/login.html` |
+| 🌿 Register | [anmols-apothecary.netlify.app/register.html](https://anmols-apothecary.netlify.app/register.html) |
+| 🔓 Login | [anmols-apothecary.netlify.app/login.html](https://anmols-apothecary.netlify.app/login.html) |
 
 ---
 
@@ -83,12 +83,6 @@ start register.html
 ```
 
 No install. No build step. Open and go.
-
----
-
-## Live
-
-👉 **[https://anmols-apothecary.netlify.app](https://anmols-apothecary.netlify.app)**
 
 ---
 
